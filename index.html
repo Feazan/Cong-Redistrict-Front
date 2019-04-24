@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<!-- saved from url=(0056)https://www.jasny.net/bootstrap/examples/navmenu-reveal/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Congressional Districts</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <link href="styles/jasny-bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="styles/navmenu-reveal.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/styles.css">
+
+    <!-- Leaflet Information -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+    integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+    crossorigin=""/>
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+    integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+    crossorigin=""></script>
+
+  </head>
+
+  <body style="">
+
+    <div id="map">
+        <div class="leaflet-top leaflet-left">
+            <div class="navmenu navmenu-default navmenu-fixed-left leaflet-control" style="">
+                <a class="navmenu-brand leaflet-control">Congressional Redistricting App</a>
+                <!-- <ul class="nav navmenu-nav flex-column leaflet-control">
+                  <li class="nav-item leaflet-control"><a class="nav-link">Slide in</a></li>
+                  <li class="nav-item leaflet-control"><a class="nav-link">Push</a></li>
+                  <li class="nav-item active leaflet-control"><a class="nav-link">Reveal</a></li>
+                  <li class="nav-item leaflet-control"><a class="nav-link">Off canvas navbar</a></li>
+                </ul> -->
+                <ul class="nav navmenu-nav flex-column leaflet-control">
+                    <li class="nav-item dropdown leaflet-control">
+                      <a class="nav-link dropdown-toggle " data-toggle="dropdown" aria-expanded="false">Register<b class="caret"></b></a>
+                      <ul class="dropdown-menu navmenu-nav" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(5px, 40px, 0px);">
+                          <form>
+                              <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Email">
+                              </div>
+                              <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Username">
+                              </div>
+                              <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                </div>
+                                <input type="password" class="form-control" placeholder="Password">
+                              </div>
+                              <div class="form-group">
+                                <input type="submit" value="Login" class="btn float-right login_btn">
+                              </div>
+                            </form>
+                      </ul>
+                    </li>  
+                </ul>
+                <ul class="nav navmenu-nav flex-column leaflet-control">
+                    <li class="nav-item dropdown leaflet-control">
+                      <a class="nav-link dropdown-toggle " data-toggle="dropdown" aria-expanded="false">Login<b class="caret"></b></a>
+                      <ul class="dropdown-menu navmenu-nav" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(5px, 40px, 0px);">
+                          <form>
+                              <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Username">
+                                
+                              </div>
+                              <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                </div>
+                                <input type="password" class="form-control" placeholder="Password">
+                              </div>
+                              <div class="form-group">
+                                <input type="submit" value="Login" class="btn float-right login_btn">
+                              </div>
+                            </form>
+                      </ul>
+                    </li>  
+                </ul>
+                <ul class="nav navmenu-nav flex-column leaflet-control">
+                  <li class="nav-item dropdown leaflet-control">
+                    <a class="nav-link dropdown-toggle " data-toggle="dropdown" aria-expanded="false">Select A State <b class="caret"></b></a>
+                    <ul class="dropdown-menu navmenu-nav" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(5px, 40px, 0px);">
+                      <li class="nav-item"><a class="nav-link" href="#" onclick="findMinnesota()">Minnesota</a></li>
+                      <li class="nav-item"><a class="nav-link" href="#" onclick="findMaryland()">Maryland</a></li>
+                      <li class="nav-item"><a class="nav-link" href="#" onclick="findFlorida()">Florida</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+          
+              <!-- <div class="canvas leaflet-control" style="">
+                <header class="navbar navbar-light bg-light fixed-top leaflet-control" style="">
+                  <button class="navbar-toggler" type="button" data-toggle="offcanvas" data-target=".navmenu" data-recalc="false" data-canvas=".canvas">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                </header>
+              </div> -->
+        </div>
+    </div>
+
+    <script src="js/map.js"></script>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="js/jasny-bootstrap.min.js"></script>
+  
+
+<div class="navmenu navmenu-default navmenu-fixed-left offcanvas-clone"></div></body></html>
